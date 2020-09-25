@@ -62,17 +62,4 @@
 
     </LinearLayout>
 
-    <!--<Button
-    android:id="@+id/button"
-    android:layout_width="229dp"
-    android:layout_height="wrap_content"
-    android:backgroundTint="#070707"
-    android:text="@string/ButtonText"
-    android:textColor="#FDFDFD"/> -->
-
-
-
-
-
-
 </LinearLayout>
