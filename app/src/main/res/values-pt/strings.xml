@@ -4,5 +4,6 @@
     <string name="hello_message">Eu estou na minha GUI!</string>
     <string name="ButtonText">CLIQUE AQUI</string>
     <string name="checkBox">" Veja isso!"</string>
+    <string name="editText">"Digite aqui"</string>
 
 </resources>

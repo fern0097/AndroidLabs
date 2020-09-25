@@ -3,5 +3,6 @@
     <string name="hello_message">I am at my GUI</string>
     <string name="checkBox">Check this out!</string>
     <string name="ButtonText">CLICK HERE</string>
+    <string name="editText">"Type here"</string>
 
 </resources>

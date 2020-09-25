@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button);
 
         button.setOnClickListener(v -> {});
+
+        EditText theText = findViewById(R.id.editText);
+        String userTyped = theText.getText().toString();
 
     }
 }
