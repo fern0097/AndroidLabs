@@ -4,5 +4,9 @@
     <string name="checkBox">Check this out!</string>
     <string name="ButtonText">CLICK HERE</string>
     <string name="editText">"Type here"</string>
+    <string name="switch5">"Switch on / off"</string>
+
+    <string name="toast_message">Hi, I am a toast</string>
+    <string name="switch_on">The switch is on now</string>
 
 </resources>

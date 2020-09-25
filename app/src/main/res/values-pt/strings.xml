@@ -3,7 +3,10 @@
     <string name="app_name">Labs1</string>
     <string name="hello_message">Eu estou na minha GUI!</string>
     <string name="ButtonText">CLIQUE AQUI</string>
-    <string name="checkBox">" Veja isso!"</string>
-    <string name="editText">"Digite aqui"</string>
+    <string name="checkBox">Veja isso!</string>
+    <string name="editText">Digite aqui</string>
+    <string name="switch5">Interruptor liga / Desligar</string>
 
+    <string name="toast_message">Hi, I am a toast in pt</string>
+    <string name="switch_on">The switch is on now</string>
 </resources>
