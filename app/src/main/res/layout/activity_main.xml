@@ -4,25 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:layout_gravity="fill"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello_message"
-        android:textSize="36sp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="229dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#070707"
         android:text="@string/ButtonText"
-        android:textColor="#FDFDFD" />
+        android:textColor="#FDFDFD"/>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/checkBox"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="229dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/flag"/>
+
+        <Switch
+            android:id="@+id/switch5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Switch"/>
+
+    </LinearLayout>
+
+    <!--<Button
+    android:id="@+id/button"
+    android:layout_width="229dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#070707"
+    android:text="@string/ButtonText"
+    android:textColor="#FDFDFD"/> -->
+
+
+
+
+
 
 </LinearLayout>
