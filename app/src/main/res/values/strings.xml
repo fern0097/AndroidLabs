@@ -1,12 +1,13 @@
 <resources>
-    <string name="app_name">Labs1</string>
-    <string name="hello_message">I am at my GUI</string>
+    <string name="app_name">Labs2</string>
+    <string name="hello_message">I am at my GUI!</string>
     <string name="checkBox">Check this out!</string>
     <string name="ButtonText">CLICK HERE</string>
-    <string name="editText">"Type here"</string>
+    <string name="editText">Type here</string>
     <string name="switch5">"Switch on / off"</string>
-
-    <string name="toast_message">Hi, I am a toast</string>
+    <string name="toast_message">Here is more information</string>
     <string name="switch_on">The switch is on now</string>
+    <string name="switch_off">The switch is off now</string>
+    <string name="undo">Undo</string>
 
 </resources>
