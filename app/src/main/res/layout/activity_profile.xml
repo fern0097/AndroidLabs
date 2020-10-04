@@ -37,7 +37,7 @@
         android:inputType="textPersonName"/>
 
     <EditText
-        android:id="@+id/editTex"
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/EDitTextEnterEmail"
