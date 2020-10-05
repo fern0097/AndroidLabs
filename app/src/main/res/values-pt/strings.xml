@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lab03</string>
-    <string name="editTextAddress">Insira o seu endereço de email!</string>
+    <string name="editTextAddress">Insira o seu endereço de email</string>
     <string name="editText">Digite o email aqui</string>
     <string name="editTextPass">Digite sua senha:</string>
     <string name="ButtonText">CONECTE-SE</string>

@@ -1,17 +1,13 @@
 package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
 import android.os.Bundle;
-import android.widget.Button;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -82,4 +78,3 @@ public class ProfileActivity extends AppCompatActivity {
         Log.e(ACTIVITY_NAME, "In function: onDestroy");
     }
 }
-

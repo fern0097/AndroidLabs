@@ -29,6 +29,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--ENTER YOUR NAME-->
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
@@ -36,6 +37,7 @@
         android:hint="@string/editTextName"
         android:inputType="textPersonName"/>
 
+    <!--ENTER YOUR EMAIL-->
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
@@ -43,21 +45,22 @@
         android:hint="@string/EDitTextEnterEmail"
         android:inputType="textPersonName"/>
 
+    <!--YOUR PICTURE TEXT-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/textProfile1"
+        android:text="@string/textYourPicture"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--CAMERA BUTTON-->
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/picture_frame" />
-
+        android:src="@android:drawable/picture_frame"/>
 
 </LinearLayout>
