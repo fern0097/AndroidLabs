@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab03</string>
+    <string name="app_name">Lab04</string>
     <string name="editTextAddress">Enter your email address</string>
     <string name="editText">Type email here</string>
     <string name="editTextPass">Type your password:</string>
@@ -9,6 +9,14 @@
     <string name="editTextName">Enter your name</string>
     <string name="EDitTextEnterEmail">Enter your email</string>
     <string name="textYourPicture">Your picture</string>
-
+    <string name="goToChat">Go to chat!</string>
+    <string name="sendButton">Send</string>
+    <string name="receivedButton">Receive</string>
+    <string name="typeHere">Type here</string>
+    <string name="are_you_sure_delete">Do you want to delete this?</string>
+    <string name="selected_row">"The selected row is: "</string>
+    <string name="database_id_is">"The database id is: "</string>
+    <string name="y">Yes</string>
+    <string name="n">No</string>
 
 </resources>

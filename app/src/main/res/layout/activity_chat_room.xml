@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatRoomActivity">
+
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/sendButton"/>
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:text="@string/sendButton"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="664dp" />
+
+    <EditText
+        android:id="@+id/sdRVEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:layout_toStartOf="@+id/receiveButton"
+        android:layout_toEndOf="@+id/sendButton"
+        android:hint="@string/typeHere" />
+
+    <Button
+        android:id="@+id/receiveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/receivedButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        tools:layout_editor_absoluteX="295dp"
+        tools:layout_editor_absoluteY="664dp" />
+
+</RelativeLayout>

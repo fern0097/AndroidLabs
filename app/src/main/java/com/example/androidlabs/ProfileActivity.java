@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.os.Bundle;
@@ -28,6 +30,19 @@ public class ProfileActivity extends AppCompatActivity {
         email.setText(intent.getStringExtra("EMAIL"));
 
         Log.e(ACTIVITY_NAME, "In function: onCreate");
+
+        // Button transfer to ChatroomActivity
+        final Button button = findViewById(R.id.goToChat);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {openChatRoomActivity();}
+        });
+    }
+
+    private void openChatRoomActivity() {
+        Intent intent = new Intent(this, ChatRoomActivity.class);
+        startActivity(intent);
+
     }
 
     private void dispatchTakePictureIntent() {
@@ -48,12 +63,12 @@ public class ProfileActivity extends AppCompatActivity {
         Log.e(ACTIVITY_NAME, "In function: onActivityResult");
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
         Log.e(ACTIVITY_NAME, "In function: onStart");
     }
-
     @Override
     protected void onResume() {
         super.onResume();

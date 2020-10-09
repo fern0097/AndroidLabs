@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab03</string>
+    <string name="app_name">Lab04</string>
     <string name="editTextAddress">Insira o seu endereço de email</string>
     <string name="editText">Digite o email aqui</string>
     <string name="editTextPass">Digite sua senha:</string>
@@ -10,7 +10,14 @@
     <string name="editTextName">Digite seu nome</string>
     <string name="EDitTextEnterEmail">Digite seu e-mail</string>
     <string name="textYourPicture">Sua foto</string>
-
-
+    <string name="goToChat">" Ir conversar!"</string>
+    <string name="sendButton">Enviar</string>
+    <string name="receivedButton">Receber</string>
+    <string name="typeHere">Digite aqui</string>
+    <string name="are_you_sure_delete">" Você quer deletar isso?"</string>
+    <string name="selected_row">A linha selecionada é</string>
+    <string name="database_id_is">O id do banco de dados é:</string>
+    <string name="y">Sim</string>
+    <string name="n">" Não"</string>
 
 </resources>
