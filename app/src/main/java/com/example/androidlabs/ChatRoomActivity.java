@@ -32,7 +32,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         myAdapter = new MyListAdapter();
         messageList.setAdapter(myAdapter);
 
-
         sendButton = findViewById(R.id.sendButton);
         receiveButton = findViewById(R.id.receiveButton);
         sdRVEditText = findViewById(R.id.sdRVEditText);
