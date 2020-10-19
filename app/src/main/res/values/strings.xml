@@ -14,8 +14,8 @@
     <string name="receivedButton">Receive</string>
     <string name="typeHere">Type here</string>
     <string name="are_you_sure_delete">Do you want to delete this?</string>
-    <string name="selected_row">"The selected row is: "</string>
-    <string name="database_id_is">"The database id is: "</string>
+    <string name="selected_row">The selected row is: </string>
+    <string name="database_id_is">The database id is: </string>
     <string name="y">Yes</string>
     <string name="n">No</string>
 
