@@ -2,8 +2,13 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,6 +27,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     private List<Message> chatMessagesList = new ArrayList<>();
     private Button sendButton, receiveButton;
     private EditText sdRVEditText;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +35,48 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         ListView messageList = findViewById(R.id.listView);
-        myAdapter = new MyListAdapter();
+        myAdapter = new MyListAdapter(ChatRoomActivity.this, chatMessagesList);
         messageList.setAdapter(myAdapter);
+
+        // load messages from database
+        loadDataFromDatabase();
+        myAdapter.notifyDataSetChanged();
 
         sendButton = findViewById(R.id.sendButton);
         receiveButton = findViewById(R.id.receiveButton);
         sdRVEditText = findViewById(R.id.sdRVEditText);
 
         sendButton.setOnClickListener(v -> {
-            chatMessagesList.add(new Message(sdRVEditText.getText().toString(), false));
+            Message m = new Message(sdRVEditText.getText().toString(), false);
+
+            // Add message to database
+            ContentValues newRowValues = new ContentValues();
+            newRowValues.put(MyOpener.COL_MESSAGE, m.getChatMessage());
+            newRowValues.put(MyOpener.COL_IS_RECEIVED, 0);
+
+            long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
+            m.setId(newId);
+
+            chatMessagesList.add(m);
+
+
             myAdapter.notifyDataSetChanged();
             sdRVEditText.setText("");
         });
 
         receiveButton.setOnClickListener(v -> {
-            chatMessagesList.add(new Message(sdRVEditText.getText().toString(), true));
+            Message m = new Message(sdRVEditText.getText().toString(), true);
+
+            // Add message to database
+            ContentValues newRowValues = new ContentValues();
+            newRowValues.put(MyOpener.COL_MESSAGE, m.getChatMessage());
+            newRowValues.put(MyOpener.COL_IS_RECEIVED, 1);
+
+            long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
+            m.setId(newId);
+
+            chatMessagesList.add(m);
+
             myAdapter.notifyDataSetChanged();
             sdRVEditText.setText("");
         });
@@ -58,6 +91,10 @@ public class ChatRoomActivity extends AppCompatActivity {
                 alertDialogBuilder.setPositiveButton(R.string.y, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        // Remove message from database
+                        db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[] {Long.toString(id)});
+
                         chatMessagesList.remove(position);
                         myAdapter.notifyDataSetChanged();
                     }
@@ -71,64 +108,75 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     }
 
-    class Message {
+    private void loadDataFromDatabase() {
+        //get a database connection:
+        MyOpener dbOpener = new MyOpener(this);
+        db = dbOpener.getWritableDatabase(); //This calls onCreate() if you've never built the table before, or onUpgrade if the version here is newer
 
-        private String chatMessage;
-        private boolean isReceived;
 
-        public Message(String chatMessage, boolean isReceived) {
-            this.chatMessage = chatMessage;
-            this.isReceived = isReceived;
+        // We want to get all of the columns. Look at MyOpener.java for the definitions:
+        String[] columns = {MyOpener.COL_ID, MyOpener.COL_MESSAGE, MyOpener.COL_IS_RECEIVED};
+        //query all the results from the database:
+        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+        //Now the results object has rows of results that match the query.
+        //find the column indices:
+        int idColIndex = results.getColumnIndex(MyOpener.COL_ID);
+        int msgColumnIndex = results.getColumnIndex(MyOpener.COL_MESSAGE);
+        int isReceivedColIndex = results.getColumnIndex(MyOpener.COL_IS_RECEIVED);
+
+        //iterate over the results, return true if there is a next item:
+        while (results.moveToNext()) {
+            long id = results.getLong(idColIndex);
+            String msg = results.getString(msgColumnIndex);
+            int isREceivedInt = results.getInt(isReceivedColIndex);
+
+            Message m = new Message(id, msg, isREceivedInt == 1);
+
+            //add the new Contact to the array list:
+            chatMessagesList.add(m);
         }
 
-        public String getChatMessage() {
-            return chatMessage;
-        }
+        printCursor(results, MyOpener.VERSION_NUM);
 
-        public void setChatMessage(String chatMessage) {
-            this.chatMessage = chatMessage;
-        }
-
-        public boolean isReceived() {
-            return isReceived;
-        }
-
-        public void setReceived(boolean received) {
-            isReceived = received;
-        }
+        //At this point, the contactsList array has loaded every row from the cursor.
     }
 
-    class MyListAdapter extends BaseAdapter {
+    private void printCursor( Cursor c, int version){
+//        •	The database version number, use db.getVersion() for the version number.
+//        •	The number of columns in the cursor.
+//        •	The name of the columns in the cursor.
+//        •	The number of rows in the cursor
+//        •	Print out each row of results in the cursor.
 
-        @Override
-        public int getCount() {
-            return chatMessagesList.size();
+        Log.d("printCursor", "version number: " + version);
+        Log.d("printCursor", "The number of columns in the cursor: " + c.getColumnCount());
+
+        for (String columnName : c.getColumnNames()) {
+            Log.d("printCursor", "Column: " + columnName);
         }
 
-        @Override
-        public Message getItem(int position) {
-            return chatMessagesList.get(position);
+        Log.d("printCursor", "The number of rows in the cursor: " + c.getCount());
+
+
+        //Now the results object has rows of results that match the query.
+        //find the column indices:
+        int idColIndex = c.getColumnIndex(MyOpener.COL_ID);
+        int msgColumnIndex = c.getColumnIndex(MyOpener.COL_MESSAGE);
+        int isReceivedColIndex = c.getColumnIndex(MyOpener.COL_IS_RECEIVED);
+
+        //iterate over the results, return true if there is a next item:
+        c.moveToPosition(-1);
+        while (c.moveToNext()) {
+            long id = c.getLong(idColIndex);
+            String msg = c.getString(msgColumnIndex);
+            int isREceivedInt = c.getInt(isReceivedColIndex);
+
+            Message m = new Message(id, msg, isREceivedInt == 1);
+
+            Log.d("printCursor", "ID: " + id + ", MESSAGE: " + msg + ", IS_RECEIVED: " + isREceivedInt);
         }
 
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v;
-            Message m = getItem(position);
-            if (m.isReceived()) {
-                v = getLayoutInflater().inflate(R.layout.receiver_layout, parent, false);
-            } else {
-                v = getLayoutInflater().inflate(R.layout.sender_layout, parent, false);
-            }
-
-            TextView chatMessage = v.findViewById(R.id.chatMessageTV);
-            chatMessage.setText(m.getChatMessage());
-
-            return v;
-        }
     }
+
 }
