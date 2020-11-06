@@ -37,10 +37,22 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {openChatRoomActivity();}
         });
+
+        final Button goToWeatherForecast = findViewById(R.id.goToWeatherForecast);
+        goToWeatherForecast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {openWeatherForecastActivity();}
+        });
     }
 
     private void openChatRoomActivity() {
         Intent intent = new Intent(this, ChatRoomActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void openWeatherForecastActivity() {
+        Intent intent = new Intent(this, WeatherForecast.class);
         startActivity(intent);
 
     }

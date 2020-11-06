@@ -20,4 +20,10 @@
     <string name="y">Sim</string>
     <string name="n">Não</string>
 
+    <string name="open_weather_forecast"> Abrir previsão do tempo </string>
+    <string name="current_temp"> Temperatura atual: </string>
+    <string name="min_temp"> Temperatura mínima: </string>
+    <string name="max_temp"> Temperatura máxima: </string>
+    <string name="uv"> UV: </string>
+
 </resources>

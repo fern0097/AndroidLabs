@@ -2,7 +2,6 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -55,7 +54,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             m.setId(newId);
 
             chatMessagesList.add(m);
-
 
             myAdapter.notifyDataSetChanged();
             sdRVEditText.setText("");
@@ -154,7 +152,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
         Log.d("printCursor", "The number of rows in the cursor: " + c.getCount());
-
 
         //Now the results object has rows of results that match the query.
         //find the column indices:
