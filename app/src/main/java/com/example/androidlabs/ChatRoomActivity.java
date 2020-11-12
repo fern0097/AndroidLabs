@@ -1,9 +1,8 @@
 package com.example.androidlabs;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,6 +12,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     private Button sendButton, receiveButton;
     private EditText sdRVEditText;
     private SQLiteDatabase db;
+    private boolean isTablet;
+
+    private DetailsFragment dFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         sendButton = findViewById(R.id.sendButton);
         receiveButton = findViewById(R.id.receiveButton);
         sdRVEditText = findViewById(R.id.sdRVEditText);
+
+        isTablet = findViewById(R.id.fragmentContainer) != null;
 
         sendButton.setOnClickListener(v -> {
             Message m = new Message(sdRVEditText.getText().toString(), false);
@@ -88,16 +95,49 @@ public class ChatRoomActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         // Remove message from database
-                        db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[] {Long.toString(id)});
+                        db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[]{Long.toString(id)});
 
                         chatMessagesList.remove(position);
                         myAdapter.notifyDataSetChanged();
+
+                        // remove the fragment if it is tablet
+                        if (isTablet && dFragment != null) {
+                            getSupportFragmentManager().beginTransaction().remove(dFragment).commit();
+                        }
                     }
                 });
                 alertDialogBuilder.setNegativeButton(R.string.n, null);
                 alertDialogBuilder.show();
 
                 return false;
+            }
+        });
+
+        messageList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Message message = chatMessagesList.get(position);
+                //Create a bundle to pass data to the new fragment
+                Bundle dataToPass = new Bundle();
+                dataToPass.putLong("ID", message.getId());
+                dataToPass.putString("MSG", message.getChatMessage());
+                dataToPass.putBoolean("RECEIVED", message.isReceived());
+
+                if (isTablet) {
+                    dFragment = new DetailsFragment(); //add a DetailFragment
+                    dFragment.setArguments(dataToPass); //pass it a bundle for information
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragmentContainer, dFragment) //Add the fragment in FrameLayout
+                            .commit(); //actually load the fragment. Calls onCreate() in DetailFragment
+                } else //isPhone
+                {
+                    Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                    nextActivity.putExtras(dataToPass); //send data to next activity
+                    startActivity(nextActivity); //make the transition
+                }
+
             }
         });
 
@@ -137,7 +177,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         //At this point, the contactsList array has loaded every row from the cursor.
     }
 
-    private void printCursor( Cursor c, int version){
+    private void printCursor(Cursor c, int version) {
 //        •	The database version number, use db.getVersion() for the version number.
 //        •	The number of columns in the cursor.
 //        •	The name of the columns in the cursor.
