@@ -42,11 +42,11 @@ public class ChatRoomActivity extends AppCompatActivity {
         // load messages from database
         loadDataFromDatabase();
         myAdapter.notifyDataSetChanged();
-
         sendButton = findViewById(R.id.sendButton);
         receiveButton = findViewById(R.id.receiveButton);
         sdRVEditText = findViewById(R.id.sdRVEditText);
 
+        // Tablet view by Id
         isTablet = findViewById(R.id.fragmentContainer) != null;
 
         sendButton.setOnClickListener(v -> {
@@ -131,16 +131,14 @@ public class ChatRoomActivity extends AppCompatActivity {
                             .beginTransaction()
                             .replace(R.id.fragmentContainer, dFragment) //Add the fragment in FrameLayout
                             .commit(); //actually load the fragment. Calls onCreate() in DetailFragment
-                } else //isPhone
-                {
+                } else {//isPhone
+
                     Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
                     nextActivity.putExtras(dataToPass); //send data to next activity
                     startActivity(nextActivity); //make the transition
                 }
-
             }
         });
-
     }
 
     private void loadDataFromDatabase() {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab06</string>
+    <string name="app_name">Lab07</string>
     <string name="editTextAddress">Enter your email address</string>
     <string name="editText">Type email here</string>
     <string name="editTextPass">Type your password:</string>
