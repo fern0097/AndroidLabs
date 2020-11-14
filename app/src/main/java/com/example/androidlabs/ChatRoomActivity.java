@@ -109,7 +109,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 alertDialogBuilder.setNegativeButton(R.string.n, null);
                 alertDialogBuilder.show();
 
-                return false;
+                return true;
             }
         });
 
