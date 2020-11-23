@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab07</string>
+    <string name="app_name">Lab08</string>
     <string name="editTextAddress">Insira o seu endereço de email</string>
     <string name="editText">Digite o email aqui</string>
     <string name="editTextPass">Digite sua senha:</string>
@@ -25,5 +25,16 @@
     <string name="min_temp"> Temperatura mínima: </string>
     <string name="max_temp"> Temperatura máxima: </string>
     <string name="uv"> UV: </string>
+    <string name="GotoToolbarpage"> Ir para a página da barra de ferramentas </string>
+
+    <string name="open"> Abrir </string>
+    <string name="close"> Fechar </string>
+    <string name="chat_page"> Página de bate-papo </string>
+    <string name="weather_forecast"> Previsão do tempo </string>
+    <string name="go_back_to_login"> Volte para o login </string>
+    <string name="facebook"> Facebook </string>
+    <string name="instagram"> Instagram </string>
+    <string name="twitter"> Twitter </string>
+    <string name="click_me"> Clique aqui </string>
 
 </resources>

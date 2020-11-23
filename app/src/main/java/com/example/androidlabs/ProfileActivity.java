@@ -1,15 +1,16 @@
 package com.example.androidlabs;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -35,13 +36,26 @@ public class ProfileActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.goToChat);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openChatRoomActivity();}
+            public void onClick(View v) {
+                openChatRoomActivity();
+            }
         });
 
         final Button goToWeatherForecast = findViewById(R.id.goToWeatherForecast);
         goToWeatherForecast.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {openWeatherForecastActivity();}
+            public void onClick(View v) {
+                openWeatherForecastActivity();
+            }
+        });
+
+
+        final Button gotoToolbarPage = findViewById(R.id.gotoToolbar);
+        gotoToolbarPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGotoToolbarActivity();
+            }
         });
     }
 
@@ -54,6 +68,12 @@ public class ProfileActivity extends AppCompatActivity {
     private void openWeatherForecastActivity() {
         Intent intent = new Intent(this, WeatherForecast.class);
         startActivity(intent);
+
+    }
+
+    private void openGotoToolbarActivity() {
+        Intent intent = new Intent(this, TestToolbar.class);
+        startActivityForResult(intent, 4563);
 
     }
 
@@ -72,6 +92,10 @@ public class ProfileActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageButton.setImageBitmap(imageBitmap);
         }
+
+        if (requestCode == 4563 && resultCode == 500) {
+            finish();
+        }
         Log.e(ACTIVITY_NAME, "In function: onActivityResult");
     }
 
@@ -81,6 +105,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onStart();
         Log.e(ACTIVITY_NAME, "In function: onStart");
     }
+
     @Override
     protected void onResume() {
         super.onResume();

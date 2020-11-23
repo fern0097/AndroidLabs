@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/choice1"
+        android:icon="@drawable/icon_facebook"
+        android:orderInCategory="100"
+        android:title="@string/facebook"
+        app:showAsAction="always" />  <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+    <item
+        android:id="@+id/choice2"
+        android:icon="@drawable/icon_instagram"
+        android:orderInCategory="10"
+        android:title="@string/instagram"
+        app:showAsAction="always" />  <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+    <item
+        android:id="@+id/choice3"
+        android:icon="@drawable/icon_twitter"
+        android:orderInCategory="5"
+        android:title="@string/twitter"
+        app:showAsAction="always" />  <!-- This uses showAsAction=always, so look at icon= parameter -->
+
+    <item
+        android:id="@+id/choice4"
+        android:title="@string/click_me"
+        app:showAsAction="never" />
+
+</menu>

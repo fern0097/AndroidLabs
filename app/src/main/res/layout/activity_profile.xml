@@ -75,4 +75,11 @@
         android:layout_height="wrap_content"
         android:text="@string/open_weather_forecast" />
 
+    <Button
+        android:id="@+id/gotoToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/GotoToolbarpage" />
+
+
 </LinearLayout>
